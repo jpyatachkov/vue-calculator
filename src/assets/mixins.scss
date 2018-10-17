@@ -1,0 +1,6 @@
+@import './main.scss';
+
+@mixin border-radius-1px {
+    border: 1px solid $primary-color;
+    border-radius: $border-radius;
+}
