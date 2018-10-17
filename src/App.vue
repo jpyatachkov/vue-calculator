@@ -1,25 +1,39 @@
 <template>
-    <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div class="App__container">
+        <my-calculator />
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
+    import MyCalculator from '@/components/MyCalculator.vue';
 
     export default Vue.extend({
         name: 'App',
+
+        components: {
+            MyCalculator,
+        }
     });
 </script>
 
 <style lang="scss">
+    html, body {
+        height: 100%;
+        min-height: 100%;
+    }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
+        height: 100%;
+        width: 100%;;
+    }
+
+    .App__container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

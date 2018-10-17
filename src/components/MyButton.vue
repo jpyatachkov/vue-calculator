@@ -1,5 +1,5 @@
 <template>
-    <div id="MyButon__container" data-jest="element-to-click" @click="handleClick">
+    <div class="MyButton__container ripple" data-jest="element-to-click" @click="handleClick">
         <p>{{ text }}</p>
     </div>
 </template>
@@ -36,9 +36,12 @@
 <style lang="scss" scoped>
     @import '@/assets/main.scss';
     @import '@/assets/mixins.scss';
+    @import '@/assets/ripple.scss';
 
     .MyButton__container {
         @include border-radius-1px;
+
+        cursor: pointer;
 
         display: flex;
         justify-content: center;
