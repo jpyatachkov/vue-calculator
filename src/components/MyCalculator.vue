@@ -7,6 +7,7 @@
             v-for="button in buttons"
             :text="button.text"
             :meta="button.meta"
+            :inversed="!!button.inversed"
             :key="button.text"
             />
         </div>
@@ -31,15 +32,22 @@
                 { text: '1', meta: '1' },
                 { text: '2', meta: '2' },
                 { text: '3', meta: '3' },
+                { text: '+', meta: '+' },
+
                 { text: '4', meta: '4' },
                 { text: '5', meta: '5' },
                 { text: '6', meta: '6' },
+                { text: '-', meta: '-' },
+
                 { text: '7', meta: '7' },
                 { text: '8', meta: '8' },
                 { text: '9', meta: '9' },
+                { text: '×', meta: '×' },
+
                 { text: '0', meta: '0' },
                 { text: '.', meta: '.' },
-                { text: '=', meta: '=' },
+                { text: '÷', meta: '÷' },
+                { text: '=', meta: '=', inversed: true },
             ],
             currentText: '',
         }),
@@ -58,8 +66,10 @@
 
 <style lang="scss" scoped>
     .MyCalculator__container {
-        display: grid;
-        grid-template-rows: 200px 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .MyCalculator__buttons-container {

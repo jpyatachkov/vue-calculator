@@ -1,5 +1,9 @@
 <template>
-    <div class="MyButton__container ripple" data-jest="element-to-click" @click="handleClick">
+    <div
+    :class="styles"
+    data-jest="element-to-click"
+    @click="handleClick"
+    >
         <p>{{ text }}</p>
     </div>
 </template>
@@ -10,6 +14,18 @@
     export default Vue.extend({
         name: 'MyButton',
         
+        computed: {
+            styles(): Object {
+                const c = {
+                    'MyButton__container': !this.inversed,
+                    'MyButton__container--inversed': this.inversed,
+                    'ripple': true,
+                };
+                console.log(c);
+                return c;
+            },
+        },
+
         methods: {
             handleClick() {
                 this.$emit(this.eventName, this.meta);
@@ -20,6 +36,10 @@
             eventName: {
                 type: String,
                 default: 'my-button-click',
+            },
+            inversed: {
+                type: Boolean,
+                default: false,
             },
             meta: {
                 type: String,
@@ -38,7 +58,7 @@
     @import '@/assets/mixins.scss';
     @import '@/assets/ripple.scss';
 
-    .MyButton__container {
+    %container {
         @include border-radius-1px;
 
         cursor: pointer;
@@ -46,16 +66,32 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: white;
-        color: $primary-color;
 
         width: 40px;
         height: 40px;
         margin: 5px;
+    }
+
+    .MyButton__container {
+        @extend %container;
+
+        background-color: white;
+        color: $primary-color;
 
         &:hover {
             background-color: $primary-color;
             color: white;
+        }
+    }
+
+    .MyButton__container--inversed {
+        @extend %container;
+
+        background-color: $primary-color;
+        color: white;
+
+        &:hover {
+            background-color: darken($color: $primary-color, $amount: 5%);
         }
     }
 </style>

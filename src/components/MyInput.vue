@@ -34,5 +34,9 @@
 
         background-color: white;
         color: $primary-color;
+
+        height: 50px;
+
+        font-size: 1.1rem;
     }
 </style>
