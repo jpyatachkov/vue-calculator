@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-    import MyCalculator from '@/components/MyCalculator.vue';
+import MyCalculator from '@/components/MyCalculator.vue';
+import Vue from 'vue';
 
-    export default Vue.extend({
-        name: 'App',
+export default Vue.extend({
+    name: 'App',
 
-        components: {
-            MyCalculator,
-        }
-    });
+    components: {
+        MyCalculator,
+    },
+});
 </script>
 
 <style lang="scss">

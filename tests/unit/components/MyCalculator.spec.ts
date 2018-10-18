@@ -37,7 +37,7 @@ describe('MyCalculator', () => {
             if meta is not = and currentTextError is false`, () => {
                 const currentText = faker.random.word();
                 const meta = faker.random.word();
-                const wrapper: any = shallowMount(MyCalculator, { 
+                const wrapper: any = shallowMount(MyCalculator, {
                     localVue,
                     data: () => ({
                         currentText,
@@ -54,7 +54,7 @@ describe('MyCalculator', () => {
             if meta is not = and currentTextError is true`, () => {
                 const currentText = faker.random.word();
                 const meta = faker.random.word();
-                const wrapper: any = shallowMount(MyCalculator, { 
+                const wrapper: any = shallowMount(MyCalculator, {
                     localVue,
                     data: () => ({
                         currentText,
@@ -85,11 +85,11 @@ describe('MyCalculator', () => {
 
             it(`should call calculator function and change currentText
             to error text if result is undefined and meta is ${START_CALCULATION_META}`, () => {
-                const wrapper: any = shallowMount(MyCalculator, { 
+                const wrapper: any = shallowMount(MyCalculator, {
                     localVue,
                     data: () => ({
                         currentTextError: false,
-                    })
+                    }),
                 });
 
                 (calculator as any).mockReturnValueOnce(undefined);
@@ -128,7 +128,7 @@ describe('MyCalculator', () => {
                 wrapper.vm.handleRemoveLast();
 
                 expect(wrapper.vm.currentText).toEqual(currentText.slice(0, currentText.length - 1));
-            })
+            });
         });
     });
 });

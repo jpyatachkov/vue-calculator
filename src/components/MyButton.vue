@@ -9,46 +9,46 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
+import Vue from 'vue';
 
-    export default Vue.extend({
-        name: 'MyButton',
-        
-        computed: {
-            styles(): Object {
-                return{
-                    'MyButton__container': !this.inversed,
-                    'MyButton__container--inversed': this.inversed,
-                    'ripple': true,
-                };
-            },
-        },
+export default Vue.extend({
+    name: 'MyButton',
 
-        methods: {
-            handleClick() {
-                this.$emit(this.eventName, this.meta);
-            },
+    computed: {
+        styles(): object {
+            return{
+                'MyButton__container': !this.inversed,
+                'MyButton__container--inversed': this.inversed,
+                'ripple': true,
+            };
         },
+    },
 
-        props: {
-            eventName: {
-                type: String,
-                default: 'my-button-click',
-            },
-            inversed: {
-                type: Boolean,
-                default: false,
-            },
-            meta: {
-                type: String,
-                required: true,
-            },
-            text: {
-                type: String,
-                required: true,
-            },
+    methods: {
+        handleClick() {
+            this.$emit(this.eventName, this.meta);
         },
-    });
+    },
+
+    props: {
+        eventName: {
+            type: String,
+            default: 'my-button-click',
+        },
+        inversed: {
+            type: Boolean,
+            default: false,
+        },
+        meta: {
+            type: String,
+            required: true,
+        },
+        text: {
+            type: String,
+            required: true,
+        },
+    },
+});
 </script>
 
 <style lang="scss" scoped>

@@ -7,8 +7,8 @@ const localVue = createLocalVue();
 
 describe('MyButton', () => {
     describe('component', () => {
-        let meta: String;
-        let text: String;
+        let meta: string;
+        let text: string;
 
         beforeEach(() => {
             meta = faker.random.uuid();
@@ -35,8 +35,8 @@ describe('MyButton', () => {
 
     describe('methods', () => {
         describe('handleClick', () => {
-            let meta: String;
-            let text: String;
+            let meta: string;
+            let text: string;
 
             beforeEach(() => {
                 meta = faker.random.uuid();

@@ -7,7 +7,7 @@ jest.mock('infix-to-postfix');
 describe('calculator', () => {
     it('should call infixToPostfix and return undefined if infixToPostfix returns null', () => {
         (infixToPostfix as any).mockReturnValueOnce(null);
-        
+
         expect(calculator(faker.random.words())).toBeUndefined();
         expect(infixToPostfix).toBeCalled();
     });
@@ -49,7 +49,8 @@ describe('calculator', () => {
     });
 
     it('should correctly evaluate long expression with different operation types', () => {
-        (infixToPostfix as any).mockReturnValueOnce('100500 74 + 15 * 21 7 * + 15 78 99 + / 150 * - 19 10 - 15 0 * + 7.574228 * /');
+        const longExpression = '100500 74 + 15 * 21 7 * + 15 78 99 + / 150 * - 19 10 - 15 0 * + 7.574228 * /';
+        (infixToPostfix as any).mockReturnValueOnce(longExpression);
         expect(calculator(faker.random.words())).toBeCloseTo(22132.718243666, 8);
     });
 

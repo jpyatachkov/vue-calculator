@@ -43,77 +43,77 @@
 </template>
 
 <script lang="ts">
-    import Vue from 'vue';
-    import calculator from '@/helpers/calculator';
-    import MyButton from '@/components/MyButton.vue';
-    import MyInput from '@/components/MyInput.vue';
+import MyButton from '@/components/MyButton.vue';
+import MyInput from '@/components/MyInput.vue';
+import calculator from '@/helpers/calculator';
+import Vue from 'vue';
 
-    export default Vue.extend({
-        name: 'MyCalculator',
+export default Vue.extend({
+    name: 'MyCalculator',
 
-        components: {
-            MyButton,
-            MyInput,
+    components: {
+        MyButton,
+        MyInput,
+    },
+
+    data: () => ({
+        buttons: [
+            { text: '1', meta: '1' },
+            { text: '2', meta: '2' },
+            { text: '3', meta: '3' },
+            { text: '+', meta: ' + ' },
+
+            { text: '4', meta: '4' },
+            { text: '5', meta: '5' },
+            { text: '6', meta: '6' },
+            { text: '−', meta: ' - ' },
+
+            { text: '7', meta: '7' },
+            { text: '8', meta: '8' },
+            { text: '9', meta: '9' },
+            { text: '×', meta: ' * ' },
+
+            { text: '0', meta: '0' },
+            { text: '.', meta: '.' },
+            { text: '-x', meta: '-' },
+            { text: '÷', meta: ' / ' },
+        ],
+        currentText: '',
+        currentTextError: false,
+    }),
+
+    methods: {
+        handleClearInput() {
+            this.currentText = '';
         },
 
-        data: () => ({
-            buttons: [
-                { text: '1', meta: '1' },
-                { text: '2', meta: '2' },
-                { text: '3', meta: '3' },
-                { text: '+', meta: ' + ' },
+        handleMyButtonClick(meta: string) {
+            if (meta === '=') {
+                const result: number|undefined = calculator(this.currentText);
 
-                { text: '4', meta: '4' },
-                { text: '5', meta: '5' },
-                { text: '6', meta: '6' },
-                { text: '−', meta: ' - ' },
-
-                { text: '7', meta: '7' },
-                { text: '8', meta: '8' },
-                { text: '9', meta: '9' },
-                { text: '×', meta: ' * ' },
-
-                { text: '0', meta: '0' },
-                { text: '.', meta: '.' },
-                { text: '-x', meta: '-' },
-                { text: '÷', meta: ' / ' },
-            ],
-            currentText: '',
-            currentTextError: false,
-        }),
-
-        methods: {
-            handleClearInput() {
-                this.currentText = '';
-            },
-
-            handleMyButtonClick(meta: string) {
-                if (meta === '=') {
-                    const result: number|undefined = calculator(this.currentText);
-
-                    if (result === undefined) {
-                        this.currentTextError = true;
-                        this.currentText = 'Введено неверное выражение';
-                    } else {
-                        this.currentText = result.toString();
-                    }
+                if (result === undefined) {
+                    this.currentTextError = true;
+                    this.currentText = 'Введено неверное выражение';
                 } else {
-                    if (this.currentTextError) {
-                        this.currentTextError = false;
-                        this.currentText = meta;
-                    } else {
-                        this.currentText += meta;
-                    }
+                    this.currentText = result.toString();
                 }
-            },
-
-            handleRemoveLast() {
-                if (!this.currentText) return;
-
-                this.currentText = this.currentText.slice(0, this.currentText.length - 1);
-            },
+            } else {
+                if (this.currentTextError) {
+                    this.currentTextError = false;
+                    this.currentText = meta;
+                } else {
+                    this.currentText += meta;
+                }
+            }
         },
-    });
+
+        handleRemoveLast() {
+            if (!this.currentText) { return; }
+
+            this.currentText = this.currentText.slice(0, this.currentText.length - 1);
+        },
+    },
+});
 </script>
 
 <style lang="scss" scoped>
