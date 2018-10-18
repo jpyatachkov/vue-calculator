@@ -4,7 +4,9 @@
             <my-input
             :value="currentText"
             />
+        </div>
 
+        <div class="MyCalculator__input-row mb-20">
             <my-button
             text="<"
             meta="removeLast"
@@ -135,10 +137,6 @@
 
     .MyCalculator__input-row {
         display: flex;
-    }
-
-    .MyCalculator__row-item--right {
-        align-self: flex-end;
     }
 </style>
 
