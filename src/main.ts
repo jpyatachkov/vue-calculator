@@ -1,3 +1,5 @@
+import 'roboto-fontface/css/roboto-slab/sass/roboto-slab-fontface.scss';
+
 import App from '@/App.vue';
 import Vue from 'vue';
 

@@ -66,7 +66,7 @@
                 { text: '4', meta: '4' },
                 { text: '5', meta: '5' },
                 { text: '6', meta: '6' },
-                { text: '-', meta: ' - ' },
+                { text: '−', meta: ' - ' },
 
                 { text: '7', meta: '7' },
                 { text: '8', meta: '8' },

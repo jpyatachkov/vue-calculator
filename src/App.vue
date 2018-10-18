@@ -23,10 +23,13 @@
         min-height: 100%;
     }
 
+    body {
+        font-family: 'Roboto-Slab', sans-serif;
+    }
+
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         height: 100%;
-        width: 100%;;
+        width: 100%;
     }
 
     .App__container {

@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "infix-to-postfix": "^0.0.3",
+        "roboto-fontface": "^0.10.0",
         "vue": "^2.5.17"
     },
     "devDependencies": {
