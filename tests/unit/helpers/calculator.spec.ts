@@ -54,6 +54,7 @@ describe('calculator', () => {
     });
 
     describe.each([
+        'dnkgn',
         '* 29',
         '/ 29',
         '× 29',

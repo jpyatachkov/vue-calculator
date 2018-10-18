@@ -1,6 +1,18 @@
 <template>
     <div class="MyCalculator__container">
-        <my-input :text.sync="currentText" />
+        <div class="MyCalculator__input-row mb-20">
+            <my-input
+            :value="currentText"
+            />
+
+            <my-button
+            class="MyCalculator__row-item--right"
+            text="C"
+            meta="clear"
+            event-name="clear-input"
+            @clear-input="handleClearInput"
+            />
+        </div>
 
         <div class="MyCalculator__buttons-container">
             <my-button
@@ -9,6 +21,7 @@
             :meta="button.meta"
             :inversed="!!button.inversed"
             :key="button.text"
+            @my-button-click="handleMyButtonClick"
             />
         </div>
     </div>
@@ -16,6 +29,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
+    import calculator from '@/helpers/calculator';
     import MyButton from '@/components/MyButton.vue';
     import MyInput from '@/components/MyInput.vue';
 
@@ -46,25 +60,37 @@
 
                 { text: '0', meta: '0' },
                 { text: '.', meta: '.' },
-                { text: '÷', meta: '÷' },
                 { text: '=', meta: '=', inversed: true },
+                { text: '÷', meta: '÷' },
             ],
             currentText: '',
         }),
 
         methods: {
-            handleMyButtonClick(evt: any) {
-                console.log(evt);
-            }
-        },
+            handleClearInput() {
+                this.currentText = '';
+            },
 
-        mounted() {
-            this.$on('my-button-click', this.handleMyButtonClick);
-        }
+            handleMyButtonClick(meta: string) {
+                if (meta === '=') {
+                    const result: number|undefined = calculator(this.currentText);
+
+                    if (result === undefined) {
+                        this.currentText = 'Введено неверное выражение';
+                    } else {
+                        this.currentText = result.toString();
+                    }
+                } else {
+                    this.currentText += meta;
+                }
+            },
+        },
     });
 </script>
 
 <style lang="scss" scoped>
+    @import '@/assets/helpers.scss';
+
     .MyCalculator__container {
         display: flex;
         flex-direction: column;
@@ -76,6 +102,24 @@
         display: grid;
         grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .MyCalculator__error {
+        color: red;
+        border-color: red;
+
+        &:focus {
+            color: red;
+            border-color: red;
+        }
+    }
+
+    .MyCalculator__input-row {
+        display: flex;
+    }
+
+    .MyCalculator__row-item--right {
+        align-self: flex-end;
     }
 </style>
 

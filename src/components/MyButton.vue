@@ -16,13 +16,11 @@
         
         computed: {
             styles(): Object {
-                const c = {
+                return{
                     'MyButton__container': !this.inversed,
                     'MyButton__container--inversed': this.inversed,
                     'ripple': true,
                 };
-                console.log(c);
-                return c;
             },
         },
 

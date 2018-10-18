@@ -1,8 +1,8 @@
 <template>
     <input
-    class="Field"
-    :pattern="pattern"
+    class="Field align-text-right"
     :value="text"
+    readonly
     />
 </template>
 
@@ -13,19 +13,15 @@
         name: 'MyInput',
 
         props: {
-            pattern: {
-                type: String,
-                default: '[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?',
-            },
             text: {
                 type: String,
-                required: true,
             },
         },
     });
 </script>
 
 <style lang="scss" scoped>
+    @import '@/assets/helpers.scss';
     @import '@/assets/main.scss';
     @import '@/assets/mixins.scss';
 
@@ -35,7 +31,9 @@
         background-color: white;
         color: $primary-color;
 
-        height: 50px;
+        height: 40px;
+        padding: 0;
+        margin: 5px;
 
         font-size: 1.1rem;
     }
