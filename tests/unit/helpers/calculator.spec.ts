@@ -19,8 +19,8 @@ describe('calculator', () => {
 
         ['0 0 +', 0],
         ['0 0 -', 0],
-        ['0 0 ×', 0],
-        ['0 0 ÷', NaN],
+        ['0 0 *', 0],
+        ['0 0 /', NaN],
 
         ['1 2 +', 3],
         ['1 -2 +', -1],
@@ -32,15 +32,15 @@ describe('calculator', () => {
         ['1 -2 -', 3],
         ['3 2 - 1 -', 0],
 
-        ['5 5 ×', 25],
-        ['5 -1 ×', -5],
-        ['5 5 × 5 ×', 125],
+        ['5 5 *', 25],
+        ['5 -1 *', -5],
+        ['5 5 * 5 *', 125],
 
-        ['100 2 ÷', 50],
-        ['100 -2 ÷', -50],
-        ['1 0 ÷', Infinity],
-        ['0 10 ÷', 0],
-        ['100 2 ÷ 2 ÷', 25],
+        ['100 2 /', 50],
+        ['100 -2 /', -50],
+        ['1 0 /', Infinity],
+        ['0 10 /', 0],
+        ['100 2 / 2 /', 25],
     ])('correct expression: %o expected result: %o', (expression, result) => {
         it('should correctly evaluate correct expressions', () => {
             (infixToPostfix as any).mockReturnValueOnce(expression);
@@ -57,14 +57,10 @@ describe('calculator', () => {
         'dnkgn',
         '* 29',
         '/ 29',
-        '× 29',
-        '÷ 29',
         '29 +',
         '29 -',
         '29 *',
         '29 /',
-        '29 ×',
-        '29 ÷',
     ])('incorrect expression: %o', (expression) => {
         it('should return undefined on each incorrect expression', () => {
             (infixToPostfix as any).mockReturnValueOnce(expression);

@@ -20,6 +20,13 @@
             event-name="clear-input"
             @clear-input="handleClearInput"
             />
+
+             <my-button
+            text="="
+            meta="="
+            inversed
+            @my-button-click="handleMyButtonClick"
+            />
         </div>
 
         <div class="MyCalculator__buttons-container">
@@ -54,22 +61,22 @@
                 { text: '1', meta: '1' },
                 { text: '2', meta: '2' },
                 { text: '3', meta: '3' },
-                { text: '+', meta: '+' },
+                { text: '+', meta: ' + ' },
 
                 { text: '4', meta: '4' },
                 { text: '5', meta: '5' },
                 { text: '6', meta: '6' },
-                { text: '-', meta: '-' },
+                { text: '-', meta: ' - ' },
 
                 { text: '7', meta: '7' },
                 { text: '8', meta: '8' },
                 { text: '9', meta: '9' },
-                { text: '×', meta: '×' },
+                { text: '×', meta: ' * ' },
 
                 { text: '0', meta: '0' },
                 { text: '.', meta: '.' },
-                { text: '=', meta: '=', inversed: true },
-                { text: '÷', meta: '÷' },
+                { text: '-x', meta: '-' },
+                { text: '÷', meta: ' / ' },
             ],
             currentText: '',
             currentTextError: false,

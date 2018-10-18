@@ -9,8 +9,6 @@ const operators: IOperatorMap = {
     '-': (x: number, y:number): number => x - y,
     '*': (x: number, y: number): number => x * y,
     '/': (x: number, y: number): number => x / y,
-    '×': (x: number, y: number): number => x * y,
-    '÷': (x: number, y: number): number => x / y,
 };
 
 export default function (rawString: string): number|undefined {
