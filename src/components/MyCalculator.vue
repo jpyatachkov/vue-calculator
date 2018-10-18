@@ -6,7 +6,13 @@
             />
 
             <my-button
-            class="MyCalculator__row-item--right"
+            text="<"
+            meta="removeLast"
+            event-name="remove-last"
+            @remove-last="handleRemoveLast"
+            />
+
+            <my-button
             text="C"
             meta="clear"
             event-name="clear-input"
@@ -64,6 +70,7 @@
                 { text: '÷', meta: '÷' },
             ],
             currentText: '',
+            currentTextError: false,
         }),
 
         methods: {
@@ -76,13 +83,25 @@
                     const result: number|undefined = calculator(this.currentText);
 
                     if (result === undefined) {
+                        this.currentTextError = true;
                         this.currentText = 'Введено неверное выражение';
                     } else {
                         this.currentText = result.toString();
                     }
                 } else {
-                    this.currentText += meta;
+                    if (this.currentTextError) {
+                        this.currentTextError = false;
+                        this.currentText = meta;
+                    } else {
+                        this.currentText += meta;
+                    }
                 }
+            },
+
+            handleRemoveLast() {
+                if (!this.currentText) return;
+
+                this.currentText = this.currentText.slice(0, this.currentText.length - 1);
             },
         },
     });

@@ -14,9 +14,9 @@ describe('MyCalculator', () => {
             it('should clear currentText field', () => {
                 const wrapper: any = shallowMount(MyCalculator, {
                     localVue,
-                    propsData: {
+                    data: () => ({
                         currentText: faker.random.words(),
-                    }
+                    }),
                 });
 
                 wrapper.vm.handleClearInput();
@@ -33,15 +33,39 @@ describe('MyCalculator', () => {
                 (calculator as any).mockClear();
             });
 
-            it('should update currentText with incoming meta if it is not =', () => {
+            it(`should append to currentText incoming meta
+            if meta is not = and currentTextError is false`, () => {
+                const currentText = faker.random.word();
                 const meta = faker.random.word();
-                const wrapper: any = shallowMount(MyCalculator, { localVue });
+                const wrapper: any = shallowMount(MyCalculator, { 
+                    localVue,
+                    data: () => ({
+                        currentText,
+                        currentTextError: false,
+                    }),
+                });
 
-                expect(wrapper.vm.currentText).toBeFalsy();
+                wrapper.vm.handleMyButtonClick(meta);
+
+                expect(wrapper.vm.currentText).toEqual(`${currentText}${meta}`);
+            });
+
+            it(`should change currentText to incoming meta and currentTextError to false
+            if meta is not = and currentTextError is true`, () => {
+                const currentText = faker.random.word();
+                const meta = faker.random.word();
+                const wrapper: any = shallowMount(MyCalculator, { 
+                    localVue,
+                    data: () => ({
+                        currentText,
+                        currentTextError: true,
+                    }),
+                });
 
                 wrapper.vm.handleMyButtonClick(meta);
 
                 expect(wrapper.vm.currentText).toEqual(meta);
+                expect(wrapper.vm.currentTextError).toBeFalsy();
             });
 
             it(`should call calculator function and change currentText
@@ -61,15 +85,50 @@ describe('MyCalculator', () => {
 
             it(`should call calculator function and change currentText
             to error text if result is undefined and meta is ${START_CALCULATION_META}`, () => {
-                const wrapper: any = shallowMount(MyCalculator, { localVue });
+                const wrapper: any = shallowMount(MyCalculator, { 
+                    localVue,
+                    data: () => ({
+                        currentTextError: false,
+                    })
+                });
 
                 (calculator as any).mockReturnValueOnce(undefined);
 
                 wrapper.vm.handleMyButtonClick(START_CALCULATION_META);
 
                 expect(wrapper.vm.currentText).toEqual(ERROR_TEXT);
+                expect(wrapper.vm.currentTextError).toBeTruthy();
                 expect(calculator).toBeCalled();
             });
+        });
+
+        describe('handleRemoveLast', () => {
+            it('should return is currentText is empty', () => {
+                const wrapper: any = shallowMount(MyCalculator, {
+                    localVue,
+                    data: () => ({
+                        currentText: '',
+                    }),
+                });
+
+                wrapper.vm.handleRemoveLast();
+
+                expect(wrapper.vm.currentText).toBeFalsy();
+            });
+
+            it('should remove last char from string', () => {
+                const currentText = faker.random.word();
+                const wrapper: any = shallowMount(MyCalculator, {
+                    localVue,
+                    data: () => ({
+                        currentText,
+                    }),
+                });
+
+                wrapper.vm.handleRemoveLast();
+
+                expect(wrapper.vm.currentText).toEqual(currentText.slice(0, currentText.length - 1));
+            })
         });
     });
 });
